@@ -32,10 +32,7 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
         if (mysqli_num_rows($result) === 1) {
             $row = mysqli_fetch_assoc($result);
 
-            if (
-                $row["email"] == $email &&
-                $row["hash_password"] == $hash_password
-            ) {
+            if ($row["email"] == $email && $row["hash_password"] == $hash_password) {
                 $role_type = $row["role_type"];
                 $_SESSION["uid"] = $row["id"];
                 $_SESSION["first_name"] = $row["first_name"];
@@ -43,6 +40,7 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
                 $_SESSION["email"] = $row["email"];
                 $_SESSION["roles"] = $role_type;
                 $_SESSION["loggedin"] = true;
+
                 if ($role_type == 1) {
                     header("Location: ./user.php");
                     exit();
@@ -50,6 +48,8 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
                     header("Location: ./mechanic.php");
                     exit();
                 }
+                // header("Location: ../index.php");
+                // exit();
             } else {
                 header("Location: ./login.php?error=Incorrect credentials");
                 exit();
@@ -63,3 +63,4 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
     header("Location: ./login.php");
     exit();
 }
+

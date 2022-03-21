@@ -41,7 +41,7 @@ if (isset($_SESSION["loggedin"]) && isset($_SESSION["roles"])) {
                         $roles == 2
                     ) { ?> <li><a href="./pages/mechanic.php">View Appointment</a></li>
                     <?php } ?>
-                    <li><a href="./pages/createappointment.php">Create Appointment</a></li>
+                    <!-- <li><a href="./pages/createappointment.php">Create Appointment</a></li> -->
                     <li>
                         <a href="./pages/logout.php">
                             <?php

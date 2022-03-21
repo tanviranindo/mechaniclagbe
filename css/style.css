@@ -447,6 +447,14 @@ form i {
     transition: 0.3s ease;
     z-index: 999;
   }
+
+  .formbg-extended {
+    width: 75%;
+  }
+
+  input[type="submit"] {
+    padding-right: 75px;
+  }
 }
 
 .scrollToTop-btn {

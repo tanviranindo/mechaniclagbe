@@ -9,6 +9,8 @@ $query_builder = TRUE;
 
 $conn = new mysqli($host, $username, $password, $db);
 
+include "../pages/statusupdate.php";
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
     printf("Error : %s", mysqli_connect_error());

@@ -6,7 +6,7 @@ var error = '<span style="font-size: small; color: #f6cf57;">';
 var success = '<span style="font-size: small; color: green;">';
 
 
-$(document).on('ready', asyncFunction);
+$(window).load(asyncFunction);
 
 function asyncFunction() {
     // formValidation();
@@ -14,6 +14,7 @@ function asyncFunction() {
     try { phoneValidator(); } catch { };
     try { passwordMatch(); } catch { };
     try { DTFunction(); } catch { };
+    // try { ratingModal(); } catch { };
 
 }
 
@@ -24,13 +25,13 @@ function asyncFunction() {
 function DTFunction() {
     $(tableid1).DataTable({
         columnDefs: [
-            { orderable: false, searchable: false, targets: [8] }
+            { orderable: false, searchable: false, targets: [9] }
         ]
     });
 
     $(tableid2).DataTable({
         columnDefs: [
-            { orderable: false, searchable: false, targets: [8] }
+            { orderable: false, searchable: false, targets: [9] }
         ]
     });
 }
@@ -131,6 +132,53 @@ function passwordMatch() {
         }
     });
 }
+// function ratingModal() {
 
+//     var rating_data = 0;
 
+//     $('#add_review').on("click", function () {
+//         $('#review_modal').modal('show');
+//     });
 
+//     $(document).on('mouseenter', '.submit_star', function () {
+//         var rating = $(this).data('rating');
+//         reset_background();
+//         for (var count = 1; count <= rating; count++) {
+//             $('#submit_star_' + count).addClass('text-warning');
+//         }
+//     });
+
+//     function reset_background() {
+//         for (var count = 1; count <= 5; count++) {
+//             $('#submit_star_' + count).addClass('star-light');
+//             $('#submit_star_' + count).removeClass('text-warning');
+//         }
+//     }
+
+//     $(document).on('mouseleave', '.submit_star', function () {
+//         reset_background();
+//         for (var count = 1; count <= rating_data; count++) {
+//             $('#submit_star_' + count).removeClass('star-light');
+//             $('#submit_star_' + count).addClass('text-warning');
+//         }
+//     });
+
+//     $(document).on('click', '.submit_star', function () {
+//         rating_data = $(this).data('rating');
+//     });
+
+//     $('#save_review').on("click", function () {
+//         $.ajax({
+//             url: "submit_rating.php",
+//             method: "POST",
+//             data: {
+//                 rating_data: rating_data
+//             },
+//             success: function (data) {
+//                 $('#review_modal').modal('hide');
+//                 alert(data);
+//             }
+//         })
+
+//     });
+// }

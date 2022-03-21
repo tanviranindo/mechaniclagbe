@@ -30,12 +30,11 @@ if (
                     $roles = $_SESSION["roles"];
                     if ($roles == 1) { ?>
                         <li><a style="color: #f6cf57" href="./user.php">View Appointment</a></li>
-                    <?php } elseif (
-                        $roles == 2
-                    ) { ?> <li><a style="color: #f6cf57" href="./mechanic.php">View Appointment</a></li>
+                    <?php } elseif ($roles == 2) { ?>
+                        <li><a style="color: #f6cf57" href="./mechanic.php">View Appointment</a></li>
                     <?php }
                     ?>
-                    <li><a href="./createappointment.php">Create Appointment</a></li>
+                    <!-- <li><a href="./createappointment.php">Create Appointment</a></li> -->
                     <li><a href="./logout.php"><?php
                                                 $var = $_SESSION["first_name"];
                                                 echo "$var";
@@ -70,7 +69,7 @@ if (
                                 <td>Date</td>
                                 <td>Shift</td>
                                 <td>Mechanic</td>
-                                <!-- <td>Status</td> -->
+                                <td>Status</td>
                                 <td style="text-align: center;">Action</td>
                             </tr>
                         </thead>
@@ -83,10 +82,7 @@ if (
                                 <td><?php echo $row["reg_no"]; ?></td>
                                 <td><?php echo $row["engine_no"]; ?></td>
                                 <?php $date = date_create($row["app_date"]); ?>
-                                <td title=" <?php echo date_format(
-                                                $date,
-                                                "l"
-                                            ); ?>" data-toggle="tooltip">
+                                <td title=" <?php echo date_format($date, "l"); ?>" data-toggle="tooltip">
                                     <?php echo date_format($date, "d F, Y"); ?>
                                 </td>
                                 <td>
@@ -118,14 +114,36 @@ if (
                                     }
                                     ?>
                                 </td>
-                                <!-- <td>0</td> -->
+                                <td>
+                                    <?php
+                                    // echo date("m/d/Y h:i:s A", $shift1) . "\n";
+                                    // echo date("m/d/Y h:i:s A", $shift2) . "\n";
+                                    // echo date("m/d/Y h:i:s A", $shift3) . "\n";
+                                    // echo date("m/d/Y h:i:s A", $shift4) . "\n";
+                                    // echo date("m/d/Y h:i:s A", $shift5) . "\n";
+                                    // echo date("m/d/Y h:i:s A", $today_date) . "\n";
+                                    switch ($row["prog_status"]) {
+                                        case 1:
+                                            echo "Appointed";
+                                            break;
+                                        case 2:
+                                            echo "In Service";
+                                            break;
+                                        case 3:
+                                            echo "Delivered";
+                                            break;
+                                        case 4:
+                                            echo "Due";
+                                            break;
+                                    } ?>
+                                </td>
                                 <td style="text-align: center;">
                                     <!-- <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a> -->
                                     <!-- <div class="text-center"> -->
                                     <!-- <button onclick="window.print();" class="" id="print-btn">Print</button> -->
                                     <!-- </div> -->
-                                    <a href="./updateappointment.php?id=<?php echo $row["app_id"]; ?>" class="edit" title="Edit" data-toggle="tooltip"><i class="fa-solid fa-pen-to-square"></i></a>
-                                    <a href="./deleteappointment.php?id=<?php echo $row["app_id"]; ?>" class="delete" title="Delete" data-toggle="tooltip"><i class="fa-solid fa-trash"></i></a>
+                                    <a href="./updateappointment.php?id=<?php echo $row["app_id"]; ?>" class="edit" title="Edit appointment" data-toggle="tooltip"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a href="./deleteappointment.php?id=<?php echo $row["app_id"]; ?>" class="delete" title="Delete appointment" onclick="return confirm('I am deleting an appointment')" data-toggle="tooltip"><i class="fa-solid fa-trash"></i></a>
                                 </td>
                             </tr>
                         <?php } ?>
@@ -147,10 +165,10 @@ if (
             ?>
             <?php
             if (isset($_GET["error"])) { ?>
-                <p class="error"><?php echo $_GET["error"]; ?></p>
+                <p class="error"><?php echo "<script> alert(\"" . $_GET["error"] . "\"); </script>"; ?></p>
             <?php }
             if (isset($_GET["success"])) { ?>
-                <p class="success"><?php echo $_GET["success"]; ?></p>
+                <p class="success"><?php echo "<script> alert(\"" . $_GET["success"] . "\"); </script>"; ?></p>
             <?php }
             ?>
         </div>
@@ -160,7 +178,9 @@ if (
     exit();
 }
     ?>
-
+    <div class="scrollToTop-btn">
+        <i class="fas fa-angle-up"></i>
+    </div>
     <script src="../js/script.js" type="text/javascript"></script>
     </body>
 

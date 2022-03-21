@@ -34,10 +34,7 @@ if (
                     <?php }
                     ?>
                     <li><a href="./createappointment.php">Create Appointment</a></li>
-                    <li><a href="./logout.php"><?php
-                                                $var = $_SESSION["first_name"];
-                                                echo "$var";
-                                                ?>, Logout</a></li>
+                    <li><a href="./logout.php"><?php echo $_SESSION["first_name"]; ?>, Logout</a></li>
                 </ul>
             </div>
         </div>
@@ -68,7 +65,7 @@ if (
                                 <td>Date</td>
                                 <td>Shift</td>
                                 <td>Mechanic</td>
-                                <!-- <td>Status</td> -->
+                                <td>Status</td>
                                 <td style="text-align: center;">Action</td>
                             </tr>
                         </thead>
@@ -107,32 +104,42 @@ if (
                                     <?php
                                     $mechanicid = $row["mechanic_id"];
                                     $listofmechanic = "SELECT * FROM mechanic WHERE mechanic_id='$mechanicid'";
-                                    if (
-                                        $mechlist = $conn->query(
-                                            $listofmechanic
-                                        )
-                                    ) {
+                                    if ($mechlist = $conn->query($listofmechanic)) {
                                         if ($mechlist->num_rows > 0) {
-                                            if (
-                                                $rowsd = mysqli_fetch_array(
-                                                    $mechlist
-                                                )
-                                            ) {
+                                            if ($rowsd = mysqli_fetch_array($mechlist)) {
                                                 $temp1 = $rowsd["mechanic_id"];
-                                                $temp2 =
-                                                    $rowsd["mechanic_name"];
+                                                $temp2 = $rowsd["mechanic_name"];
                                                 echo "$temp2";
                                             }
                                         }
                                     }
                                     ?>
                                 </td>
+                                <td>
+                                    <?php
+                                    switch ($row["prog_status"]) {
+                                        case 1:
+                                            echo "Appointed";
+                                            break;
+                                        case 2:
+                                            echo "In Service";
+                                            break;
+                                        case 3:
+                                            echo "Delivered";
+                                            break;
+                                        case 4:
+                                            echo "Due";
+                                            break;
+                                    } ?>
+                                </td>
                                 <td style="text-align: center;">
                                     <!-- <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a> -->
                                     <!-- <div class="text-center"> -->
                                     <!-- <button onclick="window.print();" class="" id="print-btn">Print</button> -->
                                     <!-- </div> -->
-                                    <a href="./deleteappointment.php?id=<?php echo $row["app_id"]; ?>" title="Delete appointment" data-toggle="tooltip"><i class="fa-solid fa-trash"></i></a>
+
+                                    <!-- <a title="Review appointment" id="add_review" data-toggle="tooltip"><i class="fa-solid fa-star"></i></a> -->
+                                    <a href="./deleteappointment.php?id=<?php echo $row["app_id"]; ?>" title="Delete appointment" onclick="return confirm('I am deleting an appointment')" data-toggle="tooltip"><i class="fa-solid fa-trash"></i></a>
                                 </td>
                             </tr>
                         <?php } ?>
@@ -166,8 +173,41 @@ if (
     exit();
 }
     ?>
-
+    <div class="scrollToTop-btn">
+        <i class="fas fa-angle-up"></i>
+    </div>
     <script src="../js/script.js" type="text/javascript"></script>
     </body>
 
     </html>
+
+    <div id="review_modal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Submit Review</h5>
+                    <i type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </i>
+                </div>
+                <div class="modal-body">
+                    <h4 class="text-center mt-2 mb-4">
+                        <i class="fas fa-star star-light submit_star mr-1" id="submit_star_1" data-rating="1"></i>
+                        <i class="fas fa-star star-light submit_star mr-1" id="submit_star_2" data-rating="2"></i>
+                        <i class="fas fa-star star-light submit_star mr-1" id="submit_star_3" data-rating="3"></i>
+                        <i class="fas fa-star star-light submit_star mr-1" id="submit_star_4" data-rating="4"></i>
+                        <i class="fas fa-star star-light submit_star mr-1" id="submit_star_5" data-rating="5"></i>
+                    </h4>
+                    <div class="form-group">
+                        <input type="text" name="user_name" id="user_name" class="form-control" placeholder="Enter Your Name" />
+                    </div>
+                    <div class="form-group">
+                        <textarea name="user_review" id="user_review" class="form-control" placeholder="Type Review Here"></textarea>
+                    </div>
+                    <div class="form-group text-center mt-4">
+                        <button type="button" class="btn btn-primary" id="save_review">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

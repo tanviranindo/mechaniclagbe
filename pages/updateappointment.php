@@ -4,10 +4,7 @@
 session_start();
 include_once "../config/dbconfig.php";
 
-if (
-    isset($_SESSION["uid"]) && isset($_SESSION["first_name"])
-    && isset($_SESSION["roles"]) && $_SESSION["roles"] == 2
-) { ?>
+if (isset($_SESSION["uid"]) && isset($_SESSION["first_name"]) && isset($_SESSION["roles"]) && $_SESSION["roles"] == 2) { ?>
     <html xmlns="https://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 
     <head>
@@ -40,7 +37,7 @@ if (
                             <li><a href="./mechanic.php">View Appointment</a></li>
                         <?php }
                         ?>
-                        <li><a href="./createappointment.php">Create Appointment</a></li>
+                        <!-- <li><a href="./createappointment.php">Create Appointment</a></li> -->
                         <li><a href="./logout.php"><?php echo $_SESSION["first_name"]; ?>, Logout</a></li>
                     </ul>
             </div>
@@ -85,7 +82,7 @@ if (
                                     <label class="form-label">Shift</label>
 
                                     <select class="input-form-select" name="shift">
-                                        <option disabled="disabled" selected="selected" value="0">Select</option>
+                                        <!-- <option disabled="disabled" selected="selected" value="0">Select</option> -->
                                         <option <?php if ($row["app_time"] == 1) echo 'selected="selected"'; ?> value="1">Morning (09:00AM)</option>
                                         <option <?php if ($row["app_time"] == 2) echo 'selected="selected"'; ?> value="2">Noon (12:00PM)</option>
                                         <option <?php if ($row["app_time"] == 3) echo 'selected="selected"'; ?> value="3">Afternoon (03:00PM)</option>
@@ -110,16 +107,14 @@ if (
                                         }
                                     }
 
-                                    if ($result = $conn->query($listofmechanic)) {
-                                        if ($result->num_rows > 0) { ?>
+                                    if ($resultdy = $conn->query($listofmechanic)) {
+                                        if ($resultdy->num_rows > 0) { ?>
                                             <select class="input-form-select" name="mechanic">
-                                                <option disabled="disabled" selected="selected" value="0">Select</option>
+                                                <!-- <option disabled="disabled" selected="selected" value="0">Select</option> -->
                                                 <?php
-                                                while ($row = mysqli_fetch_array($result)) {
+                                                while ($rowdy = mysqli_fetch_array($resultdy)) {
                                                 ?>
-                                                    <option <?php if ($mechid == $row["mechanic_id"]) {
-                                                                echo 'selected="selected"';
-                                                            } ?> value="<?php echo $row["mechanic_id"]; ?>"><?php echo $row["mechanic_name"]; ?></option>
+                                                    <option <?php if ($mechid == $rowdy["mechanic_id"]) echo 'selected="selected"'; ?> value="<?php echo $rowdy["mechanic_id"]; ?>"><?php echo $rowdy["mechanic_name"]; ?></option>
                                                 <?php
                                                 } ?>
 
@@ -132,7 +127,17 @@ if (
                                         }
                                     }
                                 } ?>
-                    <div class="field padding-bottom--24"></div>
+                    <div class="field padding-bottom--24">
+                        <label class="form-label">Status</label>
+                        <select class="input-form-select" name="status">
+                            <!-- <option disabled="disabled" selected="selected">Select</option> -->
+                            <option <?php if ($row["prog_status"] == 1) echo 'selected="selected"'; ?> value="1">Appointed</option>
+                            <option <?php if ($row["prog_status"] == 2) echo 'selected="selected"'; ?> value="2">In Service</option>
+                            <option <?php if ($row["prog_status"] == 3) echo 'selected="selected"'; ?> value="3">Delivered</option>
+                            <option <?php if ($row["prog_status"] == 4) echo 'selected="selected"'; ?> value="4">Due</option>
+                        </select>
+
+                    </div>
                             </div>
 
                         <?php
@@ -144,14 +149,10 @@ if (
 
                         <?php
                         if (isset($_GET["error"])) { ?>
-                            <p class="error"><?php echo "<script> alert(\"" .
-                                                    $_GET["error"] .
-                                                    "\"); </script>"; ?></p>
+                            <p class="error"><?php echo "<script> alert(\"" . $_GET["error"] . "\"); </script>"; ?></p>
                         <?php }
                         if (isset($_GET["success"])) { ?>
-                            <p class="success"><?php echo "<script> alert(\"" .
-                                                    $_GET["success"] .
-                                                    "\"); </script>"; ?></p>
+                            <p class="success"><?php echo "<script> alert(\"" . $_GET["success"] . "\"); </script>"; ?></p>
                         <?php }
                         ?>
 
@@ -163,7 +164,9 @@ if (
     exit();
 }
     ?>
-
+    <div class="scrollToTop-btn">
+        <i class="fas fa-angle-up"></i>
+    </div>
     <script src="../js/script.js" type="text/javascript"></script>
     </body>
 

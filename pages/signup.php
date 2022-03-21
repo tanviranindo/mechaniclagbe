@@ -146,14 +146,16 @@
 
                         <?php
                         if (isset($_GET["error"])) { ?>
-                            <p class="error"><?php echo "<script> alert(\"" .
-                                                    $_GET["error"] .
-                                                    "\"); </script>"; ?></p>
+                            <p class="error"><?php echo "<script> alert(\"" . $_GET["error"] . "\"); </script>"; ?></p>
                         <?php }
                         if (isset($_GET["success"])) { ?>
-                            <p class="success"><?php echo "<script> alert(\"" .
-                                                    $_GET["success"] .
-                                                    "\"); </script>"; ?></p>
+                            <p class="success">
+                                <?php
+                                echo "<script> 
+                                alert(\"" . $_GET["success"] . "\"); 
+                                window.location.href='./login.php';
+                                </script>";
+                                ?></p>
                         <?php }
                         ?>
                     </form>
@@ -165,6 +167,9 @@
                 </span>
             </div>
         </div>
+    </div>
+    <div class="scrollToTop-btn">
+        <i class="fas fa-angle-up"></i>
     </div>
     <script src="../js/script.js" type="text/javascript"></script>
 </body>

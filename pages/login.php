@@ -2,8 +2,6 @@
 <html xmlns="https://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 
 <?php
-session_start();
-
 if (!isset($_POST["first_name"])) { ?>
 
     <head>
@@ -57,14 +55,9 @@ if (!isset($_POST["first_name"])) { ?>
                         </div>
                         <?php
                         if (isset($_GET["error"])) { ?>
-                            <p class="error"><?php echo "<script> alert(\"" .
-                                                    $_GET["error"] .
-                                                    "\"); </script>"; ?></p>
-                        <?php }
-                        if (isset($_GET["success"])) { ?>
-                            <p class="success"><?php echo "<script> alert(\"" .
-                                                    $_GET["success"] .
-                                                    "\"); </script>"; ?></p>
+                            <p class="error"><?php echo "<script> alert(\"" . $_GET["error"] . "\"); </script>"; ?></p>
+                        <?php } else if (isset($_GET["success"])) { ?>
+                            <p class="success"><?php echo "<script> alert(\"" . $_GET["success"] . "\"); </script>"; ?></p>
                         <?php }
                         ?>
                     </form>
@@ -74,6 +67,9 @@ if (!isset($_POST["first_name"])) { ?>
                 <span style="font-size: medium;">Don't have an account?
                     <a class="linked-text" href="./signup.php">Sign up</a></span>
             </div>
+        </div>
+        <div class="scrollToTop-btn">
+            <i class="fas fa-angle-up"></i>
         </div>
         <script src="../js/script.js" type="text/javascript"></script>
     </body>

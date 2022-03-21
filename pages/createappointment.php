@@ -4,11 +4,7 @@
 session_start();
 include_once "../config/dbconfig.php";
 
-if (
-    isset($_SESSION["uid"]) &&
-    isset($_SESSION["first_name"]) &&
-    isset($_SESSION["roles"])
-) { ?>
+if (isset($_SESSION["uid"]) && isset($_SESSION["first_name"]) && isset($_SESSION["roles"]) && $_SESSION["roles"] == 1) { ?>
     <html xmlns="https://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 
     <head>
@@ -109,7 +105,6 @@ if (
                                     <option <?php if ($_GET["shift"] == 3) echo 'selected="selected"'; ?> value="3">Afternoon (03:00PM)</option>
                                     <option <?php if ($_GET["shift"] == 4) echo 'selected="selected"'; ?> value="4">Evening (06:00PM)</option>
                                 <?php } else { ?>
-                                    <option disabled="disabled" selected="selected" value="0">Select</option>
                                     <option value="1">Morning (09:00AM)</option>
                                     <option value="2">Noon (12:00PM)</option>
                                     <option value="3">Afternoon (03:00PM)</option>
@@ -154,20 +149,16 @@ if (
                         <div class="padding-bottom--36"></div>
                     </div>
                     <div class="horizontal-center field" style="width: 20%;">
-                        <input type="submit" name="submit" value="Create Appointment" id="liveToasts">
+                        <input type="submit" name="submit" value="Create Appointment">
                     </div>
                     <div class="padding-bottom--36"></div>
 
                     <?php
                     if (isset($_GET["error"])) { ?>
-                        <p class="error"><?php echo "<script> alert(\"" .
-                                                $_GET["error"] .
-                                                "\"); </script>"; ?></p>
+                        <p class="error"><?php echo "<script> alert(\"" . $_GET["error"] . "\"); </script>"; ?></p>
                     <?php }
                     if (isset($_GET["success"])) { ?>
-                        <p class="success"><?php echo "<script> alert(\"" .
-                                                $_GET["success"] .
-                                                "\"); </script>"; ?></p>
+                        <p class="success"><?php echo "<script> alert(\"" . $_GET["success"] . "\"); </script>"; ?></p>
                     <?php }
                     ?>
                 </form>
@@ -180,13 +171,9 @@ if (
     exit();
 }
     ?>
-    <script>
-        document.getElementById("liveToasts").onload = function() {
-            var myalert = document.getElementById('liveToast');
-            var bsalert = new bootstrap.Toast(myalert);
-            bsalert.show();
-        }
-    </script>
+    <div class="scrollToTop-btn">
+        <i class="fas fa-angle-up"></i>
+    </div>
     <script src="../js/script.js" type="text/javascript"></script>
     </body>
 
