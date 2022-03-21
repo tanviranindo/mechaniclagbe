@@ -63,7 +63,7 @@ Database (`dbconfig.php`) is configured for Heroku. To run the application in lo
 
 ## Bug
 
-- [ ] Appointment status may not be functional because of different timezones of server and local machine
+- [x] Appointment status may not be functional because of different timezones of server and local machine
 
 ## Note
 
