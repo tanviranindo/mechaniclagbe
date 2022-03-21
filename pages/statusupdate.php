@@ -17,7 +17,7 @@ if ($result->num_rows > 0) {
         $shift4 = strtotime('+18 hours', strtotime($appointment_date));
         $shift5 = strtotime('+21 hours', strtotime($appointment_date));
 
-        $today_date = strtotime('+12 hours', strtotime(date('d-m-Y h:i:s')));
+        $today_date = strtotime('+0 hours', strtotime(date('d-m-Y h:i:s')));
 
         $appointedquery = "UPDATE appointment SET prog_status='1' WHERE app_id='$appid'";
         $inservicequery = "UPDATE appointment SET prog_status='2' WHERE app_id='$appid'";
