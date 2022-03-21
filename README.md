@@ -2,7 +2,7 @@
 
 Mechanic Lagbe is an online car service appointment system. There are two types of accounts. One is client, where car enthusiasts can book and delete appointments. And, another one is mechanic, where they can see, update and delete appointments.
 
-#Content
+# Content
 
 - [Link](#Link)
 - [Stack](#Stack)
@@ -34,7 +34,7 @@ Mechanic Lagbe is an online car service appointment system. There are two types 
 
 ## Handle
 
-Two demo login handles are given below -
+Two demo login handles are given below
 
 ```shell
 Mechanic
@@ -48,7 +48,7 @@ Password - 123
 
 ## Usage
 
-Database (`dbconfig.php`) is configured for Heroku. To run the application in local machine, use local configuration (`dbconfiglocal.php`) by replacing or renaming (`dbconfig.php`). Also, for all requirements to run application in local machine, docker file has been provided. Moreover, import `machinelagbe.sql` into MySQL.
+Database (`dbconfig.php`) is configured for Heroku. To run the application in local machine, use local configuration (`dbconfiglocal.php`) by replacing or renaming (`dbconfig.php`). Also, for all requirements to run application in local machine, docker file has been provided. Moreover, import `machinelagbe.sql` into MySQL database.
 
 ## Todo
 
