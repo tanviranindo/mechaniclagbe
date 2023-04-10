@@ -1,9 +1,13 @@
 
 <?php
-$host = "localhost";
-$username = "root";
-$password = "";
-$database = "mechaniclagbe";
+$url = parse_url(getenv("DATABASE_URL"));
+
+$host = $url["host"];
+$username = $url["user"];
+$password = $url["pass"];
+$db = substr($url["path"], 1);
+$active_group = 'default';
+$query_builder = TRUE;
 
 $conn = new mysqli($host, $username, $password, $database);
 

@@ -1,9 +1,8 @@
 <?php
-$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-$host = $url["host"];
-$username = $url["user"];
-$password = $url["pass"];
-$db = substr($url["path"], 1);
+$host = "sql.freedb.tech";
+$username = "freedb_tanviranindo";
+$password = "@TptfEUW$4UgwE9";
+$db = "freedb_mechaniclagbe";
 $active_group = 'default';
 $query_builder = TRUE;
 

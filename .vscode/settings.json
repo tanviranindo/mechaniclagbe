@@ -1,0 +1,41 @@
+{
+    "editor.cursorBlinking": "expand",
+    "editor.cursorSurroundingLines": 15,
+    "editor.cursorSmoothCaretAnimation": "explicit",
+    "editor.cursorWidth": 5,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.dragAndDrop": true,
+    "editor.fontFamily": "'Fira Code', 'Menlo', 'Monaco', 'Courier New', 'monospace'",
+    "editor.fontSize": 22,
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.guides.bracketPairs": true,
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "scope": "entity.other.attribute-name, comment",
+                "settings": {
+                    "fontStyle": "italic"
+                }
+            }
+        ]
+    },
+    "editor.wordWrap": "on",
+    "git.enableSmartCommit": true,
+    "terminal.integrated.copyOnSelection": true,
+    "terminal.integrated.cursorBlinking": true,
+    "terminal.integrated.cursorStyle": "line",
+    "terminal.integrated.cursorWidth": 6,
+    "terminal.integrated.fontFamily": "'Fira Code', 'monospace",
+    "terminal.integrated.fontSize": 19,
+    "terminal.integrated.smoothScrolling": true,
+    "terminal.integrated.gpuAcceleration": "auto",
+    "workbench.colorTheme": "Learn with Sumit Official Theme",
+    "workbench.editor.showIcons": true,
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
+}
